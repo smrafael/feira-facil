@@ -1,0 +1,25 @@
+server:
+  servlet:
+    context-path: /v2/api
+
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+    url: jdbc:postgresql://localhost:5432/feira-facil
+    password: postgres
+    username: postgres
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path: /docs
+  
