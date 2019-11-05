@@ -28,8 +28,8 @@ public class ClientController {
     private ClientService clientService;
     
     @PostMapping
-    public ClientResponse createClient(@RequestBody ClientPersist c) {
-	return ClientResponse.toResponse(clientService.create(c.toClient()));
+    public ClientResponse createClient(@RequestBody ClientPersist clientPersist) {
+	return ClientResponse.toResponse(clientService.create(clientPersist.toClient()));
     }
     
     @GetMapping
@@ -38,8 +38,8 @@ public class ClientController {
     }
     
     @PutMapping("/{id}")
-    public ClientResponse updateClient(@PathVariable("id") Long id, @RequestBody ClientUpdate c) throws Exception {
-	Client client = c.toClient();
+    public ClientResponse updateClient(@PathVariable("id") Long id, @RequestBody ClientUpdate clientUpdate) throws Exception {
+	Client client = clientUpdate.toClient();
 	client.setId(id);
 	return ClientResponse.toResponse(clientService.update(client));
     }

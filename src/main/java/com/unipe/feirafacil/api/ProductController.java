@@ -28,8 +28,8 @@ public class ProductController {
     private ProductService productService;
     
     @PostMapping
-    public ProductResponse createProduct(@RequestBody ProductPersist p) {
-	return ProductResponse.toResponse(productService.create(p.toProduct()));
+    public ProductResponse createProduct(@RequestBody ProductPersist productPersist) {
+	return ProductResponse.toResponse(productService.create(productPersist.toProduct()));
     }
     
     @GetMapping
@@ -38,8 +38,8 @@ public class ProductController {
     }
     
     @PutMapping("/{id}")
-    public ProductResponse updateProduct(@PathVariable("id") Long id, @RequestBody ProductUpdate p) throws Exception {
-	Product product = p.toProduct();
+    public ProductResponse updateProduct(@PathVariable("id") Long id, @RequestBody ProductUpdate productUpdate) throws Exception {
+	Product product = productUpdate.toProduct();
 	product.setId(id);
 	return ProductResponse.toResponse(productService.update(product));
     }

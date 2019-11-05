@@ -28,8 +28,8 @@ public class DiscountController {
     private DiscountService discountService;
     
     @PostMapping
-    public DiscountResponse createDiscount(@RequestBody DiscountPersist d) {
-	Discount discount = discountService.create(d.toDiscount());
+    public DiscountResponse createDiscount(@RequestBody DiscountPersist discountPersist) {
+	Discount discount = discountService.create(discountPersist.toDiscount());
 	return DiscountResponse.toResponse(discount);
     }
     
@@ -39,8 +39,8 @@ public class DiscountController {
     }
     
     @PutMapping("/{id}")
-    public DiscountResponse updateDiscount(@PathVariable("id") Long id, @RequestBody DiscountUpdate d) throws Exception {
-	Discount discount = d.toDiscount();
+    public DiscountResponse updateDiscount(@PathVariable("id") Long id, @RequestBody DiscountUpdate discountPersist) throws Exception {
+	Discount discount = discountPersist.toDiscount();
 	discount.setId(id);
 	return DiscountResponse.toResponse(discountService.update(discount));
     }
